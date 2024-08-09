@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addTodo, deleteTodo, updateTodo, changeStatus } from './Utils/TodoSlice';
 import { FaCheck, FaEdit, FaTrash } from "react-icons/fa";
 import { FaXmark } from 'react-icons/fa6';
-
-{/* <FaCircleChevronDown /> */ }
+import background from './images/ImageOne.avif';
 
 
 function Home() {
@@ -71,64 +70,66 @@ function Home() {
   })
 
   return (
-    <div className='text-center my-10'>
-      <h1 className='text-2xl'>Todo app</h1>
-      <p>
-        <input type="text"
-          className='border p-2 my-5 mx-3'
-          onChange={(e) => {
-            setTitle(e.target.value)
-          }}
-          value={title} />
+    <div className='bg-cover bg-no-repeat bg-center h-screen w-screen flex items-center flex-col p-10 overflow-x-hidden'
+      style={{ backgroundImage: `url(${background})` }}>
+      <h1 className='text-6xl font-semibold text-amber-950 my-2'>Todo app</h1>
+      <div className='text-center   max-h-fit'>
+        <p className='py-6 w-full flex gap-5 items-center max-w-2xl mx-auto '>
+          <input type="text"
+            className='border px-5 py-2.5 w-[86%] rounded-xl outline-none focus:border-yellow-900 bg-transparent border-yellow-950 text-yellow-950 placeholder:text-amber-950'
+            onChange={(e) => {
+              setTitle(e.target.value)
+            }}
+            value={title} />
+          <input type="text"
+            className='border px-5 py-2.5 w-[86%] rounded-xl outline-none focus:border-yellow-900 bg-transparent border-yellow-950 text-yellow-950 placeholder:text-amber-950'
+            onChange={(e) => {
+              setDetail(e.target.value)
+            }}
+            value={detail} />
+          <button
+            className='py-[11px] px-5 bg-yellow-950 text-white rounded-full'
+            onClick={handleAdd}>{editId ? "Update" : "Add"}</button>
+        </p>
+        <p>
+          <input type="text"
+            placeholder='Search...'
+            className='border border-amber-950 p-1 bg-transparent rounded text-amber-950 outline-none placeholder:text-amber-950'
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value)
+            }}
+          />
+        </p>
+      </div>
+      <hr />
 
-        <input type="text"
-          className='border p-2 my-5 mx-3'
-          onChange={(e) => {
-            setDetail(e.target.value)
-          }}
-          value={detail} />
-      </p>
-      <p>
-        <input type="text"
-          placeholder='Search...'
-          className='border p-2 bg-slate-200 translate-x-60'
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value)
-          }}
-        />
-      </p>
-      <button
-        className='border py-2 px-4 bg-gray-300'
-        onClick={handleAdd}>{editId ? "Update" : "Add"}</button>
-      <hr className='my-5' />
-
-      <div className='border border-red-900 h-full w-full grid lg:grid-cols-2 sm:grid-cols-1'>
+      <div className='h-full w-full grid lg:grid-cols-2 sm:grid-cols-1 mt-6 mb-5 gap-10 text-center justify-items-center'>
         {filterTodo.map((val, id) => {
           return (
-            <div className='border border-gray rounded m-5'>
-              <div className='cursor-pointer  pt-5 pb-2 px-5 flex justify-between'>
-                <p className='text-3xl font-semibold'>{val.title}</p>
-                <div className='mr-5 border border-red-800 flex gap-5'>
-                  <FaTrash onClick={() => {
-                    handleDelete(val.id)
-                  }}
-                    className='border text-blue-600 text-3xl' />
-                  <FaEdit onClick={() => {
-                    handleEdit(val)
-                  }}
-                    className='border  text-3xl text-blue-600 ' />
-
-                  <div className='border text-3xl   rounded-lg' onClick={() => {
+            <div className='border-[.1px] border-amber-900 flex flex-col rounded-2xl items-baseline h-fit w-[34rem] shadow-xl bg-opacity-20 backdrop-filter backdrop-blur-md'>
+              <div className='cursor-pointer pt-5 pb-2 px-5 flex justify-between items-center w-full'>
+                <p className='text-3xl font-semibold text-amber-950'>{val.title}</p>
+                <div className='mr-5 flex gap-5'>
+                  <div className=' text-amber-950 text-2xl rounded-lg' onClick={() => {
                     handleStatus(val)
                   }}>{val.status ? <FaCheck /> : <FaXmark />
                     }</div>
+                  <FaTrash onClick={() => {
+                    handleDelete(val.id)
+                  }}
+                    className=' text-amber-950 text-2xl' />
+                  <FaEdit onClick={() => {
+                    handleEdit(val)
+                  }}
+                    className='  text-2xl text-amber-950 ' />
+
                 </div>
               </div>
 
               <div className='px-5 py-2 text-left'>
-                <p className='text-xl'>{val.detail}</p>
-                <p className='text-gray-600 text-sm mt-2'>{val.date}</p>
+                <p className='text-lg text-[#4d2e0e]'>{val.detail}</p>
+                <p className='text-[#633b11] text-sm mt-2 italic'>{val.date}</p>
               </div>
 
             </div>)

@@ -3,15 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   todos: [{
     id: 4512247,
-    title: "Do your work",
-    detail: "lorem ipsum lorem ipsum",
+    title: "Update Resume",
+    detail: "Add recent projects and new skills learned in the last few months. Ensure that the formatting is clean and the content is concise.",
     status: true,
     date: '20 aug 2024'
   },
   {
     id: 45125,
-    title: "Complete your work",
-    detail: "lorem ipsum lorem ipsum",
+    title: "Finish React Project",
+    detail: "Complete the remaining tasks on the dashboard component, including data fetching, state management, and styling. Ensure to review the code for any bugs",
     status: true,
     date: '20 aug 12'
   }
