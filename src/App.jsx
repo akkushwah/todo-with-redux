@@ -1,4 +1,3 @@
-import Todo from "./Todo"
 import Home from "./Home"
 
 function App() {
@@ -6,7 +5,6 @@ function App() {
   return (
     <>
       <Home />
-      {/* <Todo /> */}
     </>
   )
 }
