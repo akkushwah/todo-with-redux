@@ -14,11 +14,8 @@ function Home() {
   const [status, setStatus] = useState(false);
   const [editId, setEditId] = useState(null);
   const [search, setSearch] = useState('');
-  const [open, setOpen] = useState(false);
 
-
-
-
+  // Adding Todos
   const handleAdd = () => {
     const date = new Date().toDateString();
     if (editId !== null) {
@@ -40,16 +37,19 @@ function Home() {
     else {
       alert("You are not adding anything, please add some task")
     }
+    // reset the fields
     setDetail('');
     setTitle('')
   }
 
+  // Targeting the edit to editing
   const handleEdit = (todo) => {
     setEditId(todo.id);
     setTitle(todo.title);
     setDetail(todo.detail);
   }
 
+  // Marketing the status check(completed) or cross(not completed)
   const handleStatus = (val) => {
     // console.log("Before", val.status)
     const obj = {
@@ -60,11 +60,12 @@ function Home() {
     // console.log(obj.status)
   }
 
+  // Delete handle
   const handleDelete = (id) => {
     dispatch(deleteTodo(id))
   }
 
-
+  // filtering the todo from serchbar
   const filterTodo = Data.filter((items) => {
     return items.title.toLowerCase().includes(search.toLowerCase()) || items.detail.toLowerCase().includes(search.toLowerCase());
   })
@@ -72,8 +73,10 @@ function Home() {
   return (
     <div className='bg-cover bg-no-repeat bg-center h-screen w-screen flex items-center flex-col p-10 overflow-x-hidden'
       style={{ backgroundImage: `url(${background})` }}>
+      {/******* Heading  *******/}
       <h1 className='text-6xl font-semibold text-amber-950 my-2'>Todo app</h1>
       <div className='text-center   max-h-fit'>
+        {/***********  All Inputs fields *******/}
         <p className='py-6 w-full flex gap-5 items-center max-w-2xl mx-auto '>
           <input type="text"
             className='border px-5 py-2.5 w-[86%] rounded-xl outline-none focus:border-yellow-900 bg-transparent border-yellow-950 text-yellow-950 placeholder:text-amber-950'
@@ -91,6 +94,8 @@ function Home() {
             className='py-[11px] px-5 bg-yellow-950 text-white rounded-full'
             onClick={handleAdd}>{editId ? "Update" : "Add"}</button>
         </p>
+
+        {/********* Serach input ***********/}
         <p>
           <input type="text"
             placeholder='Search...'
@@ -105,6 +110,7 @@ function Home() {
       <hr />
 
       <div className='h-full w-full grid lg:grid-cols-2 sm:grid-cols-1 mt-6 mb-5 gap-10 text-center justify-items-center'>
+        {/******************** List of todos *************/}
         {filterTodo.map((val, id) => {
           return (
             <div className='border-[.1px] border-amber-900 flex flex-col rounded-2xl items-baseline h-fit w-[34rem] shadow-xl bg-opacity-20 backdrop-filter backdrop-blur-md'>
@@ -123,7 +129,6 @@ function Home() {
                     handleEdit(val)
                   }}
                     className='  text-2xl text-amber-950 ' />
-
                 </div>
               </div>
 
@@ -133,12 +138,9 @@ function Home() {
               </div>
 
             </div>)
-
         })
         }
       </div>
-      <hr />
-
     </div >
   )
 }
