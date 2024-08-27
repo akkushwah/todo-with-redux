@@ -83,12 +83,14 @@ function Home() {
             onChange={(e) => {
               setTitle(e.target.value)
             }}
+            placeholder='Enter Title..'
             value={title} />
           <input type="text"
             className='border px-5 py-2.5 w-[86%] rounded-xl outline-none focus:border-yellow-900 bg-transparent border-yellow-950 text-yellow-950 placeholder:text-amber-950'
             onChange={(e) => {
               setDetail(e.target.value)
             }}
+            placeholder='Enter Description..'
             value={detail} />
           <button
             className='py-[11px] px-5 bg-yellow-950 text-white rounded-full'
